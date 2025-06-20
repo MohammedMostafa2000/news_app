@@ -74,14 +74,19 @@ class _SearchViewState extends State<SearchView> {
             SizedBox(height: 16.h),
             Expanded(child: Consumer<SearchViewModel>(
               builder: (context, searchViewModel, child) {
+                if (searchViewModel.articles.isEmpty) {
+                  return Center(
+                      child: Text(
+                    'No Articles',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ));
+                }
+
                 if (searchViewModel.isArticlesLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (searchViewModel.articlesErrorMessage.isNotEmpty) {
                   return Center(child: Text(searchViewModel.articlesErrorMessage));
-                }
-                if (searchViewModel.articles.isEmpty) {
-                  return const Center(child: Text('No Articles'));
                 }
 
                 return ListView.builder(

@@ -12,7 +12,7 @@ class ApiServices {
   static const String _sourcesEndPoint = '/v2/top-headlines/sources';
   static const String _articlesEndPoint = '/v2/top-headlines';
   static const String _searchEndPoint = '/v2/everything';
-  static const String _apiKey = '7f33b6b7a996451bb12195a90df76edf';
+  static const String _apiKey = '17cd6e0cfa5d4fd0adda134c909d2425';
 
   static Future<Either<List<SourceDM>, String>> getSources(CategoryDM category) async {
     try {

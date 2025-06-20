@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme_manager.dart';
 import 'package:news_app/core/routes_manager.dart';
+import 'package:news_app/provider/config_provider.dart';
 import 'package:news_app/provider/search_provider.dart';
 import 'package:news_app/provider/sources_view_provider.dart';
 import 'package:news_app/provider/tav_view_provider.dart';
@@ -14,6 +15,7 @@ void main() {
         ChangeNotifierProvider(create: (context) => TabViewProvider()),
         ChangeNotifierProvider(create: (context) => SourcesViewModel()),
         ChangeNotifierProvider(create: (context) => SearchViewModel()),
+        ChangeNotifierProvider(create: (context) => ConfigProvider()),
       ],
       
       child: const NewsApp(),
@@ -36,7 +38,7 @@ class NewsApp extends StatelessWidget {
         onGenerateRoute: RoutesManager.router,
         theme: ThemeManager.light,
         darkTheme: ThemeManager.dark,
-        themeMode: ThemeMode.light,
+        themeMode: Provider.of<ConfigProvider>(context).currentTheme,
         locale: const Locale('en'),
       ),
     );

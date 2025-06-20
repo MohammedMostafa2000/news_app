@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/core/routes_manager.dart';
+import 'package:news_app/provider/config_provider.dart';
 import 'package:news_app/provider/tav_view_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +17,11 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   bool isDark = false;
   bool isEnglish = true;
+  // ThemeMode themeMode =ThemeMode.light;
   @override
   Widget build(BuildContext context) {
     var tabViewProvider = Provider.of<TabViewProvider>(context);
+    // var configProvider = Provider.of<ConfigProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(tabViewProvider.tabTitle),
@@ -70,7 +73,14 @@ class _MainLayoutState extends State<MainLayout> {
                           size: 34.sp,
                         ),
                         SizedBox(width: 12.w),
-                        Text('Go To Home', style: Theme.of(context).textTheme.labelMedium),
+                        Text(
+                          'Go To Home',
+                          style: GoogleFonts.inter(
+                            color: ColorsManager.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -84,11 +94,16 @@ class _MainLayoutState extends State<MainLayout> {
                     children: [
                       const Icon(
                         Icons.imagesearch_roller_outlined,
+                        color: ColorsManager.white,
                       ),
                       SizedBox(width: 12.w),
                       Text(
                         'Them',
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: GoogleFonts.inter(
+                          color: ColorsManager.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -104,14 +119,21 @@ class _MainLayoutState extends State<MainLayout> {
                           color: ColorsManager.white,
                         ),
                       ),
-                      Switch(
-                        value: isDark,
-                        onChanged: (value) {
-                          setState(() {
-                            isDark = !isDark;
-                          });
+                      Consumer<ConfigProvider>(
+                        builder: (context, configProvider, child) {
+                          return Switch(
+                            value: isDark,
+                            onChanged: (value) {
+                              configProvider.changeAppTheme(
+                                  value == false ? ThemeMode.light : ThemeMode.dark);
+
+                              setState(() {
+                                isDark = !isDark;
+                              });
+                            },
+                          );
                         },
-                      ),
+                      )
                     ],
                   ),
                   SizedBox(height: 20.h),
@@ -124,11 +146,16 @@ class _MainLayoutState extends State<MainLayout> {
                     children: [
                       const Icon(
                         Icons.language_outlined,
+                        color: ColorsManager.white,
                       ),
                       SizedBox(width: 12.w),
                       Text(
                         'Language',
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: GoogleFonts.inter(
+                          color: ColorsManager.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
