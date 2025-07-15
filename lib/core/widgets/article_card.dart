@@ -2,16 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/colors_manager.dart';
-import 'package:news_app/models/article_d_m.dart';
+import 'package:news_app/domain/entities/article_entity.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({
     super.key,
-    required this.articleDM,
+    required this.articleEntity,
   });
-  final ArticleDM articleDM;
+  final ArticleEntity articleEntity;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -34,7 +34,7 @@ class ArticleCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: CachedNetworkImage(
-                imageUrl: articleDM.urlToImage ?? '',
+                imageUrl: articleEntity.urlToImage ?? '',
                 height: 220.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class ArticleCard extends StatelessWidget {
               ),
             ),
             Text(
-              articleDM.title ?? '',
+              articleEntity.title ?? '',
               style: Theme.of(context).textTheme.titleMedium,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -61,7 +61,7 @@ class ArticleCard extends StatelessWidget {
                 ConstrainedBox(
                   constraints: BoxConstraints.tightForFinite(width: 200.w),
                   child: Text(
-                    articleDM.author ?? '',
+                    articleEntity.author ?? '',
                     style: Theme.of(context).textTheme.labelSmall,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -80,7 +80,7 @@ class ArticleCard extends StatelessWidget {
   }
 
   String getTimeAgo() {
-    String dateTimeString = articleDM.publishedAt ?? '';
+    String dateTimeString = articleEntity.publishedAt ?? '';
     DateTime dateTime = DateTime.parse(dateTimeString);
     String timeAgo = timeago.format(dateTime);
     return timeAgo;
@@ -112,7 +112,7 @@ class ArticleCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
               child: CachedNetworkImage(
-                imageUrl: articleDM.urlToImage ?? '',
+                imageUrl: articleEntity.urlToImage ?? '',
                 height: 220.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -130,7 +130,7 @@ class ArticleCard extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Text(
-              articleDM.description ?? '',
+              articleEntity.description ?? '',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             SizedBox(height: 8.h),
@@ -153,7 +153,7 @@ class ArticleCard extends StatelessWidget {
   }
 
   Future<void> _launchUrl() async {
-    final Uri articleUrl = Uri.parse(articleDM.url!);
+    final Uri articleUrl = Uri.parse(articleEntity.url!);
 
     if (!await launchUrl(
       articleUrl,

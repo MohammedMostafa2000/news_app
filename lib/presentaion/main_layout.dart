@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/core/routes_manager.dart';
-import 'package:news_app/provider/config_provider.dart';
-import 'package:news_app/provider/tav_view_provider.dart';
+import 'package:news_app/providers/config_provider.dart';
+import 'package:news_app/providers/tab_view_provider.dart';
 import 'package:provider/provider.dart';
 
 class MainLayout extends StatefulWidget {

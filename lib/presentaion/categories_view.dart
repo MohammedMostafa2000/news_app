@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/colors_manager.dart';
-import 'package:news_app/models/category_d_m.dart';
-import 'package:news_app/provider/tav_view_provider.dart';
+import 'package:news_app/data/models/category_d_m.dart';
+import 'package:news_app/providers/tab_view_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesView extends StatelessWidget {

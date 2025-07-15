@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/colors_manager.dart';
 import 'package:news_app/core/widgets/article_card.dart';
-import 'package:news_app/models/category_d_m.dart';
-import 'package:news_app/provider/sources_view_provider.dart';
+import 'package:news_app/data/models/category_d_m.dart';
+import 'package:news_app/providers/sources_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SourcesView extends StatefulWidget {
@@ -72,7 +72,7 @@ class _SourcesViewState extends State<SourcesView> {
               }
               return ListView.builder(
                 itemBuilder: (context, index) => ArticleCard(
-                  articleDM: viewModel.articles[index],
+                  articleEntity: viewModel.articles[index],
                 ),
                 itemCount: viewModel.articles.length,
               );

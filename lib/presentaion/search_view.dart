@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/widgets/article_card.dart';
-import 'package:news_app/provider/search_provider.dart';
+import 'package:news_app/providers/search_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SearchView extends StatefulWidget {
@@ -15,13 +15,7 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   late TextEditingController searchController;
-
   late SearchViewModel searchViewModel;
-//   @override
-//   void initState() {
-//     super.initState();
-//     loadData();
-//   }
 
   @override
   void initState() {
@@ -85,6 +79,7 @@ class _SearchViewState extends State<SearchView> {
                 if (searchViewModel.isArticlesLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
+
                 if (searchViewModel.articlesErrorMessage.isNotEmpty) {
                   return Center(child: Text(searchViewModel.articlesErrorMessage));
                 }
@@ -92,7 +87,7 @@ class _SearchViewState extends State<SearchView> {
                 return ListView.builder(
                   itemCount: searchViewModel.articles.length,
                   itemBuilder: (context, index) {
-                    return ArticleCard(articleDM: searchViewModel.articles[index]);
+                    return ArticleCard(articleEntity: searchViewModel.articles[index]);
                   },
                 );
               },

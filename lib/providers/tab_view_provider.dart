@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/models/category_d_m.dart';
+import 'package:news_app/data/models/category_d_m.dart';
 import 'package:news_app/presentaion/categories_view.dart';
 import 'package:news_app/presentaion/sources_view.dart';
 

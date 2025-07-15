@@ -2,22 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/config/theme_manager.dart';
 import 'package:news_app/core/routes_manager.dart';
-import 'package:news_app/provider/config_provider.dart';
-import 'package:news_app/provider/search_provider.dart';
-import 'package:news_app/provider/sources_view_provider.dart';
-import 'package:news_app/provider/tav_view_provider.dart';
+import 'package:news_app/data/api/api_services.dart';
+import 'package:news_app/data/data_source_implementation/articles_data_source_implementation.dart';
+import 'package:news_app/data/data_source_implementation/sources_data_source_implementaion.dart';
+import 'package:news_app/data/repository_implementation/articles_repository_implementation.dart';
+import 'package:news_app/data/repository_implementation/search_repository_implementaion.dart';
+import 'package:news_app/data/repository_implementation/sources_repository_implementation.dart';
+import 'package:news_app/domain/usecases/get_articles_use_case.dart';
+import 'package:news_app/domain/usecases/get_sources_use_case.dart';
+import 'package:news_app/domain/usecases/search_articles_use_case.dart';
+import 'package:news_app/providers/config_provider.dart';
+import 'package:news_app/providers/search_view_model.dart';
+import 'package:news_app/providers/sources_view_model.dart';
+import 'package:news_app/providers/tab_view_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => TabViewProvider()),
-        ChangeNotifierProvider(create: (context) => SourcesViewModel()),
-        ChangeNotifierProvider(create: (context) => SearchViewModel()),
-        ChangeNotifierProvider(create: (context) => ConfigProvider()),
+        ChangeNotifierProvider(create: (_) => TabViewProvider()),
+        ChangeNotifierProvider(
+          create: (_) => SourcesViewModel(
+            getSourcesUseCase: GetSourcesUseCase(
+              sourcesRepository: SourcesRepositoryImplementation(
+                sourcesDataSource: SourcesApiDataSourceImplementaion(
+                  apiServices: ApiServices(),
+                ),
+              ),
+            ),
+            getArticlesUseCase: GetArticlesUseCase(
+              articlesRepository: ArticlesRepositoryImplementation(
+                articlesDataSource: ArticlesApiDataSourceImplementation(
+                  apiServices: ApiServices(),
+                ),
+              ),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SearchViewModel(
+            searchArticlesUseCase: SearchArticlesUseCase(
+              searchRepository: SearchRepositoryImplementation(
+                apiServices: ApiServices(),
+              ),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider(create: (_) => ConfigProvider()),
       ],
-      
       child: const NewsApp(),
     ),
   );

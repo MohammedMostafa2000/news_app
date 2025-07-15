@@ -3,7 +3,6 @@ import 'package:news_app/core/images_manager.dart';
 class CategoryDM {
   String title;
   String id;
-
   String imagePath;
   CategoryDM({
     required this.title,
