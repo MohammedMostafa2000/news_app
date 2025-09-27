@@ -53,7 +53,9 @@ class _SourcesViewState extends State<SourcesView> {
                 physics: const BouncingScrollPhysics(),
                 isScrollable: true,
                 automaticIndicatorColorAdjustment: false,
-                tabs: viewModel.sources.map((source) => Tab(text: source.name)).toList(),
+                tabs: viewModel.sources
+                    .map((source) => Tab(text: source.name))
+                    .toList(),
               ),
             );
           },

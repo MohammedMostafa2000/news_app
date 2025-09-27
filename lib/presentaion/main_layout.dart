@@ -124,8 +124,9 @@ class _MainLayoutState extends State<MainLayout> {
                           return Switch(
                             value: isDark,
                             onChanged: (value) {
-                              configProvider.changeAppTheme(
-                                  value == false ? ThemeMode.light : ThemeMode.dark);
+                              configProvider.changeAppTheme(value == false
+                                  ? ThemeMode.light
+                                  : ThemeMode.dark);
 
                               setState(() {
                                 isDark = !isDark;

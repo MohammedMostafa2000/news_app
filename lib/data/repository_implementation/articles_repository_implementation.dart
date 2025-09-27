@@ -10,7 +10,8 @@ class ArticlesRepositoryImplementation implements ArticlesRepository {
   ArticlesRepositoryImplementation({required this.articlesDataSource});
 
   @override
-  Future<Either<List<ArticleEntity>, String>> getArticles(SourceEntity sourceEntity) async {
+  Future<Either<List<ArticleEntity>, String>> getArticles(
+      SourceEntity sourceEntity) async {
     final sourceDM = SourceDM.fromEntity(sourceEntity);
     final result = await articlesDataSource.getArticles(sourceDM);
     return result.fold(

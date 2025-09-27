@@ -38,8 +38,9 @@ class ArticleCard extends StatelessWidget {
                 height: 220.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                    child: CircularProgressIndicator(
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                        child: CircularProgressIndicator(
                   color: ColorsManager.black,
                   value: downloadProgress.progress,
                 )),
@@ -116,7 +117,8 @@ class ArticleCard extends StatelessWidget {
                 height: 220.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
                   child: CircularProgressIndicator(
                     color: ColorsManager.black,
                     value: downloadProgress.progress,
@@ -144,7 +146,8 @@ class ArticleCard extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16.r),
                   )),
-              child: Text('View Full Articel', style: Theme.of(context).textTheme.titleMedium),
+              child: Text('View Full Articel',
+                  style: Theme.of(context).textTheme.titleMedium),
             )
           ],
         ),

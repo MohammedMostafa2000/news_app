@@ -8,7 +8,8 @@ class SearchRepositoryImplementation implements SearchRepository {
   SearchRepositoryImplementation({required this.apiServices});
 
   @override
-  Future<Either<List<ArticleEntity>, String>> searchArticles(String query) async {
+  Future<Either<List<ArticleEntity>, String>> searchArticles(
+      String query) async {
     final result = await apiServices.search(query);
     return result.fold(
       (left) {

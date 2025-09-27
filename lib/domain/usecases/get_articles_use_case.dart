@@ -9,7 +9,8 @@ class GetArticlesUseCase {
     required this.articlesRepository,
   });
 
-  Future<Either<List<ArticleEntity>, String>> invoke(SourceEntity sourceEntity) {
+  Future<Either<List<ArticleEntity>, String>> invoke(
+      SourceEntity sourceEntity) {
     return articlesRepository.getArticles(sourceEntity);
   }
 }

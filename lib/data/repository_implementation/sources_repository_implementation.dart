@@ -9,7 +9,8 @@ class SourcesRepositoryImplementation implements SourcesRepository {
   SourcesRepositoryImplementation({required this.sourcesDataSource});
 
   @override
-  Future<Either<List<SourceEntity>, String>> getSources(CategoryDM categoryDM) async {
+  Future<Either<List<SourceEntity>, String>> getSources(
+      CategoryDM categoryDM) async {
     final result = await sourcesDataSource.getSources(categoryDM);
     return result.fold(
       (left) {

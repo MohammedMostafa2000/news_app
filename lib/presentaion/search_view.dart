@@ -55,13 +55,16 @@ class _SearchViewState extends State<SearchView> {
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.r),
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.r),
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16.r),
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
                 ),
               ),
             ),
@@ -81,13 +84,15 @@ class _SearchViewState extends State<SearchView> {
                 }
 
                 if (searchViewModel.articlesErrorMessage.isNotEmpty) {
-                  return Center(child: Text(searchViewModel.articlesErrorMessage));
+                  return Center(
+                      child: Text(searchViewModel.articlesErrorMessage));
                 }
 
                 return ListView.builder(
                   itemCount: searchViewModel.articles.length,
                   itemBuilder: (context, index) {
-                    return ArticleCard(articleEntity: searchViewModel.articles[index]);
+                    return ArticleCard(
+                        articleEntity: searchViewModel.articles[index]);
                   },
                 );
               },
